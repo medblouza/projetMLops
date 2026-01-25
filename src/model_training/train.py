@@ -17,39 +17,30 @@ def main():
 
     preprocessor = joblib.load(f"{DATA_DIR}/preprocessor.joblib")
 
+    # 🔑 FIT ICI (UNE SEULE FOIS)
     X_train_p = preprocessor.fit_transform(X_train)
     X_test_p = preprocessor.transform(X_test)
 
-    with mlflow.start_run():
+    # 🔑 Sauvegarder le preprocessor FITTÉ
+    joblib.dump(preprocessor, f"{DATA_DIR}/preprocessor.joblib")
 
+    with mlflow.start_run():
         model = LogisticRegression(max_iter=1000)
         model.fit(X_train_p, y_train)
 
         y_pred = model.predict(X_test_p)
 
-        # Metrics
-        acc = accuracy_score(y_test, y_pred)
-        prec = precision_score(y_test, y_pred)
-        rec = recall_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred)
+        mlflow.log_metric("accuracy", accuracy_score(y_test, y_pred))
+        mlflow.log_metric("precision", precision_score(y_test, y_pred))
+        mlflow.log_metric("recall", recall_score(y_test, y_pred))
+        mlflow.log_metric("f1_score", f1_score(y_test, y_pred))
 
-        # Log params
-        mlflow.log_param("model", "LogisticRegression")
-        mlflow.log_param("max_iter", 1000)
-
-        # Log metrics
-        mlflow.log_metric("accuracy", acc)
-        mlflow.log_metric("precision", prec)
-        mlflow.log_metric("recall", rec)
-        mlflow.log_metric("f1_score", f1)
-
-        # Log model
         mlflow.sklearn.log_model(model, "model")
-
-        print("MLflow run completed")
 
     os.makedirs(MODEL_DIR, exist_ok=True)
     joblib.dump(model, f"{MODEL_DIR}/churn_model.joblib")
+
+    print("Training completed")
 
 if __name__ == "__main__":
     main()
