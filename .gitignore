@@ -1,6 +1,15 @@
+# Python
 __pycache__/
+*.pyc
 .venv/
+.env
+
+# MLflow
 mlruns/
-data/raw/
-data/processed/
+
+# DVC cache
+.dvc/cache
+
+# Data & models (tracked by DVC, not Git)
+data/
 models/
