@@ -18,3 +18,12 @@ stages:
       - data/processed/y_train.csv
       - data/processed/y_test.csv
       - data/processed/preprocessor.joblib
+  training:
+    cmd: python src/model_training/train.py
+    deps:
+      - src/model_training/train.py
+      - data/processed/X_train_raw.csv
+      - data/processed/y_train.csv
+      - data/processed/preprocessor.joblib
+    outs:
+      - models/churn_model.joblib
