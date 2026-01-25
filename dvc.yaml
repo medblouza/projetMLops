@@ -6,3 +6,15 @@ stages:
       - data/raw/telco_churn.csv
     outs:
       - data/processed/churn_ingested.csv
+
+  data_transformation:
+    cmd: python src/data_transformation/transform.py
+    deps:
+      - src/data_transformation/transform.py
+      - data/processed/churn_ingested.csv
+    outs:
+      - data/processed/X_train_raw.csv
+      - data/processed/X_test_raw.csv
+      - data/processed/y_train.csv
+      - data/processed/y_test.csv
+      - data/processed/preprocessor.joblib

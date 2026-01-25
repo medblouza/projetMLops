@@ -16,3 +16,35 @@ stages:
       hash: md5
       md5: 7f07de26b054de4c36eed95a1277fe21
       size: 978285
+  data_transformation:
+    cmd: python src/data_transformation/transform.py
+    deps:
+    - path: data/processed/churn_ingested.csv
+      hash: md5
+      md5: 7f07de26b054de4c36eed95a1277fe21
+      size: 978285
+    - path: src/data_transformation/transform.py
+      hash: md5
+      md5: cf10dedc0d518857e43e6452b8b89dfe
+      size: 1791
+    outs:
+    - path: data/processed/X_test_raw.csv
+      hash: md5
+      md5: 35c19a65f2517501b75f5bb622ecc0f5
+      size: 175967
+    - path: data/processed/X_train_raw.csv
+      hash: md5
+      md5: 14c5a6f9fefde65e76b8f703183ea9d5
+      size: 702074
+    - path: data/processed/preprocessor.joblib
+      hash: md5
+      md5: f40c90aa56b645775f2409c84630f8ba
+      size: 1967
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: e958151f165f7f472b725188c9e97a20
+      size: 4234
+    - path: data/processed/y_train.csv
+      hash: md5
+      md5: f597c5156799e0428077438ebc926949
+      size: 16909
