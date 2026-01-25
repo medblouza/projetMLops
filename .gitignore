@@ -10,6 +10,7 @@ mlruns/
 # DVC cache
 .dvc/cache
 
-# Data & models (tracked by DVC, not Git)
-data/
+# Ignore ONLY data content, not .dvc files
+data/raw/
+data/processed/
 models/
