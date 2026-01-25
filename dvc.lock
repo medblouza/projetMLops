@@ -72,3 +72,22 @@ stages:
       hash: md5
       md5: 6303547834df75d22e515c40cb4c7384
       size: 43423
+  evaluation:
+    cmd: python src/model_evaluation/evaluate.py
+    deps:
+    - path: data/processed/X_test_raw.csv
+      hash: md5
+      md5: 35c19a65f2517501b75f5bb622ecc0f5
+      size: 175967
+    - path: data/processed/y_test.csv
+      hash: md5
+      md5: e958151f165f7f472b725188c9e97a20
+      size: 4234
+    - path: models/churn_model.joblib
+      hash: md5
+      md5: 6303547834df75d22e515c40cb4c7384
+      size: 43423
+    - path: src/model_evaluation/evaluate.py
+      hash: md5
+      md5: f737880ab14585d0ca4d8944b1904265
+      size: 1057

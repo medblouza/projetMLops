@@ -27,3 +27,10 @@ stages:
       - data/processed/preprocessor.joblib
     outs:
       - models/churn_model.joblib
+  evaluation:
+    cmd: python src/model_evaluation/evaluate.py
+    deps:
+      - src/model_evaluation/evaluate.py
+      - models/churn_model.joblib
+      - data/processed/X_test_raw.csv
+      - data/processed/y_test.csv
