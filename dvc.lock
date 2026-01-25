@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion/ingest.py
+    deps:
+    - path: data/raw/telco_churn.csv
+      hash: md5
+      md5: 0f9de68e012bd3aed5fa7cdc9fc421af
+      size: 977501
+    - path: src/data_ingestion/ingest.py
+      hash: md5
+      md5: 85951a604fb51dbd2cfc034aaba4b6e7
+      size: 690
+    outs:
+    - path: data/processed/churn_ingested.csv
+      hash: md5
+      md5: 7f07de26b054de4c36eed95a1277fe21
+      size: 978285

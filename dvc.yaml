@@ -1,0 +1,8 @@
+stages:
+  data_ingestion:
+    cmd: python src/data_ingestion/ingest.py
+    deps:
+      - src/data_ingestion/ingest.py
+      - data/raw/telco_churn.csv
+    outs:
+      - data/processed/churn_ingested.csv
