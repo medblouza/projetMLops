@@ -7,3 +7,4 @@ streamlit
 requests
 mlflow
 dvc
+evidently>=0.4.30
